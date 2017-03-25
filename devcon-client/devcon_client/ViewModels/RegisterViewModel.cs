@@ -12,27 +12,41 @@ namespace devcon_client.ViewModels
     string login = string.Empty;
     string name = string.Empty;
     string phone = string.Empty;
-    Image photo;
+    string photo = string.Empty;
 
-    public ICommand TakePhotoCommand { get; }
-    public ICommand SendRegisterCommand { get; }
-    public ICommand MainPageCommand { get; }
+    public Command TakePhotoCommand { get; }
+    public Command SendRegisterCommand { get; }
+    public Command MainPageCommand { get; }
 
     public RegisterViewModel()
     {
-      TakePhotoCommand = new Command(TakePhotoExecute);
       MainPageCommand = new Command(Commands.MainPageExecute);
       SendRegisterCommand = new Command(SendRegisterExecute, SendRegisterCanExecute);
+      this.PropertyChanged += RegisterViewModel_PropertyChanged;
+    }
+
+    private void RegisterViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+    {
+      SendRegisterCommand.ChangeCanExecute();
     }
 
     private bool SendRegisterCanExecute()
     {
-      return photo != null;
+      return !string.IsNullOrWhiteSpace(photo)
+        && !string.IsNullOrWhiteSpace(login) && login.Trim().Length>=2
+        && !string.IsNullOrWhiteSpace(name) && name.Trim().Length>2        ;
     }
 
     private void SendRegisterExecute()
     {
-      //TODO : Call backend
+      try
+      {
+        throw new NotImplementedException("Нет связи с сервером");
+      }
+      catch (Exception ex)
+      {
+        Message = ex.Message;        
+      }      
     }
 
     public string Message
@@ -60,36 +74,12 @@ namespace devcon_client.ViewModels
       set { phone = value; OnPropertyChanged(); }
     }
 
-    public Image Photo
+    public string Photo
     {
       get { return photo; }
       set { photo = value; OnPropertyChanged(); }
     }
 
-    public void TakePhotoExecute()
-    {
-      CrossMedia.Current.Initialize().Wait();
-      if (CrossMedia.Current.IsCameraAvailable && CrossMedia.Current.IsTakePhotoSupported)
-      {
-        var task = CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
-        {
-          SaveToAlbum = true,
-          Directory = "Sample",
-          Name = $"{DateTime.Now.ToString("dd.MM.yyyy_hh.mm.ss")}.jpg"
-        });
-        task.Wait();
-
-        var file = task.Result;
-
-        if (file == null)
-          return;
-        
-        photo = new Image() {
-          Source = ImageSource.FromFile(file.Path)
-        };
-      }
-    }
-
-
+     
   }
 }

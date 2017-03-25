@@ -12,11 +12,11 @@
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto"/>
         <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
         <RowDefinition Height="*"/>
-        <RowDefinition Height="*"/>
-        <RowDefinition Height="*"/>
-        <RowDefinition Height="*"/>
-        <RowDefinition Height="*"/>
+        <RowDefinition Height="Auto"/>
       </Grid.RowDefinitions>
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="*"/>
@@ -55,9 +55,12 @@
               VerticalOptions="Center"
               HorizontalOptions="FillAndExpand">
       </Entry>
-
-      <Button
+      <Label 
           Grid.Row="3"
+          Grid.Column="0"
+        Text="{Binding Message}" VerticalOptions="Center" TextColor="Red"  HorizontalOptions="StartAndExpand"/>
+      <Button
+          Grid.Row="4"
           Grid.Column="0"
           Text="Отправить"
           Command="{Binding SendRegisterCommand}"
@@ -67,29 +70,25 @@
           BackgroundColor="{StaticResource Primary}"/>
 
       <Button
-          Grid.Row="3"
+          Grid.Row="4"
           Grid.Column="1"
           Text="Вернуться"
           Command="{Binding MainPageCommand}"
           HorizontalOptions="FillAndExpand"/>
 
-      <Button
+      <Image 
           Grid.Row="5"
+          Grid.Column="0"
+        Grid.ColumnSpan="2"
+        Source="{Binding Photo}" />
+
+      <Button
+          Grid.Row="6"
           Grid.Column="0"
           Grid.ColumnSpan="2"
           Text="Сфотографироваться"
-          Command="{Binding TakePhotoCommand}"
+          x:Name="btnTakePhoto"
           HorizontalOptions="FillAndExpand"/>
-
-      <StackLayout Grid.Row="6" Grid.ColumnSpan="2" VerticalOptions="Center" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-        <ActivityIndicator IsRunning="{Binding IsBusy}" HorizontalOptions="EndAndExpand" VerticalOptions="Center">
-          <ActivityIndicator.Color>
-            <OnPlatform x:TypeArguments="Color" Android="{StaticResource Accent}"/>
-          </ActivityIndicator.Color>
-        </ActivityIndicator>
-        <Label Text="{Binding Message}" VerticalOptions="Center"  HorizontalOptions="StartAndExpand"/>
-      </StackLayout>
-
     </Grid>
   </ScrollView>
 </ContentPage>
