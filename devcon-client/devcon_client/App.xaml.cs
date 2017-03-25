@@ -30,18 +30,7 @@ namespace devcon_client
 
     public static void SetMainPage()
     {
-      if (!AzureNeedsSetup && !Settings.IsLoggedIn)
-      {
-        Current.MainPage = new NavigationPage(new LoginPage())
-        {
-          BarBackgroundColor = (Color)Current.Resources["Primary"],
-          BarTextColor = Color.White
-        };
-      }
-      else
-      {
-        GoToMainPage();
-      }
+      Commands.MainPageExecute();
     }
 
     public static void GoToMainPage()

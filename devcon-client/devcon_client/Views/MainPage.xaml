@@ -2,10 +2,10 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:devcon_client.ViewModels;"
-             x:Class="devcon_client.Views.LoginPage"
+             x:Class="devcon_client.Views.MainPage"
              Title="devcon_client">
   <ContentPage.BindingContext>
-    <vm:LoginViewModel/>
+    <vm:MainViewModel/>
   </ContentPage.BindingContext>
   <ScrollView>
     <Grid Padding="20,40,20,20" ColumnSpacing="10" RowSpacing="20">
@@ -30,15 +30,15 @@
                 HorizontalOptions="FillAndExpand"
                 LineBreakMode="WordWrap"
                 FontSize="Large"
-                Text="Sign in with your account to save and sync items"/>
+                Text="Добро пожаловать в DevSchool"/>
       </StackLayout>
 
 
       <Button
           Grid.Row="1"
           Grid.Column="0"
-          Text="Not Now"
-          Command="{Binding NotNowCommand}"
+          Text="Зарегистрироваться"
+          Command="{Binding AskRegisterCommand}"
           x:Name="ButtonNowNow"
           HorizontalOptions="FillAndExpand"
           IsEnabled="{Binding IsNotBusy}"/>
@@ -46,8 +46,8 @@
       <Button
           Grid.Row="1"
           Grid.Column="1"
-          Text="Sign In"
-          Command="{Binding SignInCommand}"
+          Text="Войти"
+          Command="{Binding AskLoginCommand}"
           HorizontalOptions="FillAndExpand"
           IsEnabled="{Binding IsNotBusy}"
           TextColor="White"

@@ -2,10 +2,10 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:devcon_client.ViewModels;"
-             x:Class="devcon_client.Views.LoginPage"
+             x:Class="devcon_client.Views.RegisterPage"
              Title="devcon_client">
   <ContentPage.BindingContext>
-    <vm:LoginViewModel/>
+    <vm:RegisterViewModel/>
   </ContentPage.BindingContext>
   <ScrollView>
     <Grid Padding="20,40,20,20" ColumnSpacing="10" RowSpacing="20">
@@ -30,7 +30,7 @@
                 HorizontalOptions="FillAndExpand"
                 LineBreakMode="WordWrap"
                 FontSize="Large"
-                Text="Sign in with your account to save and sync items"/>
+                Text="Регистрация"/>
       </StackLayout>
 
 
