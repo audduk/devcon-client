@@ -51,7 +51,7 @@
               Grid.ColumnSpan="2"
               Text="{Binding Phone}"
               Placeholder="Телефон (опционально)"
-              MinimumHeightRequest="38"
+              MinimumHeightRequest="38" 
               VerticalOptions="Center"
               HorizontalOptions="FillAndExpand">
       </Entry>
@@ -62,26 +62,24 @@
           Text="Отправить"
           Command="{Binding SendRegisterCommand}"
           x:Name="ButtonSendRegister"
-          HorizontalOptions="FillAndExpand"/>
+          HorizontalOptions="FillAndExpand"
+          TextColor="White"
+          BackgroundColor="{StaticResource Primary}"/>
 
       <Button
           Grid.Row="3"
           Grid.Column="1"
           Text="Вернуться"
           Command="{Binding MainPageCommand}"
-          HorizontalOptions="FillAndExpand"
-          TextColor="White"
-          BackgroundColor="{StaticResource Primary}"/>
+          HorizontalOptions="FillAndExpand"/>
 
       <Button
           Grid.Row="5"
           Grid.Column="0"
           Grid.ColumnSpan="2"
           Text="Сфотографироваться"
-          Command="{Binding SendRegisterCommand}"
-          HorizontalOptions="FillAndExpand"
-          TextColor="White"
-          BackgroundColor="{StaticResource Primary}"/>
+          Command="{Binding TakePhotoCommand}"
+          HorizontalOptions="FillAndExpand"/>
 
       <StackLayout Grid.Row="6" Grid.ColumnSpan="2" VerticalOptions="Center" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
         <ActivityIndicator IsRunning="{Binding IsBusy}" HorizontalOptions="EndAndExpand" VerticalOptions="Center">

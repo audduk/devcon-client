@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Plugin.Media;
+using Plugin.Media.Abstractions;
+using System;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -18,14 +20,14 @@ namespace devcon_client.ViewModels
 
     public RegisterViewModel()
     {
-      TakePhotoCommand = new Command(Commands.TakePhotoExecute);
+      TakePhotoCommand = new Command(TakePhotoExecute);
       MainPageCommand = new Command(Commands.MainPageExecute);
       SendRegisterCommand = new Command(SendRegisterExecute, SendRegisterCanExecute);
     }
 
     private bool SendRegisterCanExecute()
     {
-      return phone != null;
+      return photo != null;
     }
 
     private void SendRegisterExecute()
@@ -63,5 +65,31 @@ namespace devcon_client.ViewModels
       get { return photo; }
       set { photo = value; OnPropertyChanged(); }
     }
+
+    public void TakePhotoExecute()
+    {
+      CrossMedia.Current.Initialize().Wait();
+      if (CrossMedia.Current.IsCameraAvailable && CrossMedia.Current.IsTakePhotoSupported)
+      {
+        var task = CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
+        {
+          SaveToAlbum = true,
+          Directory = "Sample",
+          Name = $"{DateTime.Now.ToString("dd.MM.yyyy_hh.mm.ss")}.jpg"
+        });
+        task.Wait();
+
+        var file = task.Result;
+
+        if (file == null)
+          return;
+        
+        photo = new Image() {
+          Source = ImageSource.FromFile(file.Path)
+        };
+      }
+    }
+
+
   }
 }

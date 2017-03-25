@@ -1,4 +1,6 @@
 ﻿using devcon_client.Views;
+using Plugin.Media;
+using Plugin.Media.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,13 +39,5 @@ namespace devcon_client
       };
     }
 
-    public static void TakePhotoExecute()
-    {
-      App.Current.MainPage = new NavigationPage(new LoginPage())
-      {
-        BarBackgroundColor = (Color)App.Current.Resources["Primary"],
-        BarTextColor = Color.White
-      };
-    }
   }
 }
