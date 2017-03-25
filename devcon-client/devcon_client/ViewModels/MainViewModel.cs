@@ -13,7 +13,7 @@ namespace devcon_client.ViewModels
   {
     public MainViewModel()
     {
-      AskRegisterCommand = new Command(Commands.AskRegisterCommand);
+      AskRegisterCommand = new Command(Commands.AskRegisterExecute);
       AskLoginCommand = new Command(Commands.AskLoginExecute);
     }
 

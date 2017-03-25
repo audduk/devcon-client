@@ -19,7 +19,7 @@ namespace devcon_client
       };
     }
 
-    public static void AskRegisterCommand()
+    public static void AskRegisterExecute()
     {
       App.Current.MainPage = new NavigationPage(new RegisterPage())
       {
@@ -29,6 +29,15 @@ namespace devcon_client
     }
 
     public static void AskLoginExecute()
+    {
+      App.Current.MainPage = new NavigationPage(new LoginPage())
+      {
+        BarBackgroundColor = (Color)App.Current.Resources["Primary"],
+        BarTextColor = Color.White
+      };
+    }
+
+    public static void TakePhotoExecute()
     {
       App.Current.MainPage = new NavigationPage(new LoginPage())
       {

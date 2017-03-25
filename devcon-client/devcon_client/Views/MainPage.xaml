@@ -12,13 +12,13 @@
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto"/>
         <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
         <RowDefinition Height="*"/>
       </Grid.RowDefinitions>
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="*"/>
-        <ColumnDefinition Width="*"/>
       </Grid.ColumnDefinitions>
-      <StackLayout Spacing="30" Grid.ColumnSpan="2">
+      <StackLayout Spacing="30">
        <Image  HorizontalOptions="Center"
                 VerticalOptions="Center"
                 WidthRequest="95" HeightRequest="95"
@@ -36,7 +36,6 @@
 
       <Button
           Grid.Row="1"
-          Grid.Column="0"
           Text="Зарегистрироваться"
           Command="{Binding AskRegisterCommand}"
           x:Name="ButtonNowNow"
@@ -44,8 +43,7 @@
           IsEnabled="{Binding IsNotBusy}"/>
 			
       <Button
-          Grid.Row="1"
-          Grid.Column="1"
+          Grid.Row="2"
           Text="Войти"
           Command="{Binding AskLoginCommand}"
           HorizontalOptions="FillAndExpand"
@@ -53,7 +51,7 @@
           TextColor="White"
           BackgroundColor="{StaticResource Primary}"/>
       
-      <StackLayout Grid.Row="2" Grid.ColumnSpan="2" VerticalOptions="Center" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+      <StackLayout Grid.Row="3" VerticalOptions="Center" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
         <ActivityIndicator IsRunning="{Binding IsBusy}" HorizontalOptions="EndAndExpand" VerticalOptions="Center">
           <ActivityIndicator.Color>
             <OnPlatform x:TypeArguments="Color" Android="{StaticResource Accent}"/>
