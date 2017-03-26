@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:devcon_client.ViewModels;"
              x:Class="devcon_client.Views.RegisterPage"
-             Title="devcon_client">
+             Title="Регистрация">
   <ContentPage.BindingContext>
     <vm:RegisterViewModel/>
   </ContentPage.BindingContext>
@@ -15,8 +15,8 @@
         <RowDefinition Height="Auto"/>
         <RowDefinition Height="Auto"/>
         <RowDefinition Height="Auto"/>
-        <RowDefinition Height="*"/>
         <RowDefinition Height="Auto"/>
+        <RowDefinition Height="*"/>
       </Grid.RowDefinitions>
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="*"/>
@@ -76,19 +76,19 @@
           Command="{Binding MainPageCommand}"
           HorizontalOptions="FillAndExpand"/>
 
-      <Image 
-          Grid.Row="5"
-          Grid.Column="0"
-        Grid.ColumnSpan="2"
-        Source="{Binding Photo}" />
-
       <Button
-          Grid.Row="6"
+          Grid.Row="5"
           Grid.Column="0"
           Grid.ColumnSpan="2"
           Text="Сфотографироваться"
           x:Name="btnTakePhoto"
           HorizontalOptions="FillAndExpand"/>
+
+      <Image 
+          Grid.Row="6"
+          Grid.Column="0"
+        Grid.ColumnSpan="2"
+        Source="{Binding Photo}" />
     </Grid>
   </ScrollView>
 </ContentPage>

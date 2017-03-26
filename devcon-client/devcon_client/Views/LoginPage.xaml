@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:devcon_client.ViewModels;"
              x:Class="devcon_client.Views.LoginPage"
-             Title="devcon_client">
+             Title="Вход в систему">
   <ContentPage.BindingContext>
     <vm:LoginViewModel/>
   </ContentPage.BindingContext>
@@ -34,61 +34,41 @@
               HorizontalOptions="FillAndExpand">
       </Entry>
 
-      <Entry x:Name="EntryName"
-              Grid.Column="0"
-              Grid.Row="1"
-              Grid.ColumnSpan="2"
-              Text="{Binding Name}"
-              Placeholder="Имя (минимум 2 символа)"
-              MinimumHeightRequest="38"
-              VerticalOptions="Center"
-              HorizontalOptions="FillAndExpand">
-      </Entry>
-
-      <Entry x:Name="EntryPhone"
-              Grid.Column="0"
-              Grid.Row="2"
-              Grid.ColumnSpan="2"
-              Text="{Binding Phone}"
-              Placeholder="Телефон (опционально)"
-              MinimumHeightRequest="38" 
-              VerticalOptions="Center"
-              HorizontalOptions="FillAndExpand">
-      </Entry>
       <Label 
-          Grid.Row="3"
+          Grid.Row="1"
           Grid.Column="0"
         Text="{Binding Message}" VerticalOptions="Center" TextColor="Red"  HorizontalOptions="StartAndExpand"/>
+      
       <Button
-          Grid.Row="4"
+          Grid.Row="2"
           Grid.Column="0"
-          Text="Отправить"
-          Command="{Binding SendRegisterCommand}"
-          x:Name="ButtonSendRegister"
+          Text="Войти"
+          Command="{Binding SendLoginCommand}"
+          x:Name="ButtonSendLogin"
           HorizontalOptions="FillAndExpand"
           TextColor="White"
           BackgroundColor="{StaticResource Primary}"/>
 
       <Button
-          Grid.Row="4"
+          Grid.Row="2"
           Grid.Column="1"
           Text="Вернуться"
           Command="{Binding MainPageCommand}"
           HorizontalOptions="FillAndExpand"/>
 
-      <Image 
-          Grid.Row="5"
-          Grid.Column="0"
-        Grid.ColumnSpan="2"
-        Source="{Binding Photo}" />
-
       <Button
-          Grid.Row="6"
+          Grid.Row="3"
           Grid.Column="0"
           Grid.ColumnSpan="2"
           Text="Сфотографироваться"
           x:Name="btnTakePhoto"
           HorizontalOptions="FillAndExpand"/>
+
+      <Image 
+          Grid.Row="4"
+          Grid.Column="0"
+        Grid.ColumnSpan="2"
+        Source="{Binding Photo}" />
     </Grid>
   </ScrollView>
 </ContentPage>

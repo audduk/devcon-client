@@ -28,12 +28,17 @@ namespace devcon_client.Views
 
         if (file == null)
           return;
+        /*
         var stream = file.GetStream();
         
         await DisplayAlert("File Size", $"{stream.Length}", "OK");
         stream.Dispose();
 
         await DisplayAlert("File Location", file.Path, "OK");
+        
+         * 
+         */
+         
         /*
                 var imageSource = ImageSource.FromStream(() => {
                   var stream = file.GetStream();

@@ -28,20 +28,23 @@ namespace devcon_client.Views
 
         if (file == null)
           return;
+        /*
         var stream = file.GetStream();
         
         await DisplayAlert("File Size", $"{stream.Length}", "OK");
         stream.Dispose();
 
         await DisplayAlert("File Location", file.Path, "OK");
-        /*
+        
+         */
+         /*
                 var imageSource = ImageSource.FromStream(() => {
                   var stream = file.GetStream();
                   file.Dispose();
                   return stream;
                 });
         */
-        ((RegisterViewModel)this.BindingContext).Photo = file.Path;
+        ((LoginViewModel)this.BindingContext).Photo = file.Path;
         //or:
         //image.Source = ImageSource.FromFile(file.Path);
         //image.Dispose();

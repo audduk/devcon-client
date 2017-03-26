@@ -10,34 +10,31 @@ namespace devcon_client.ViewModels
   {
     string message = string.Empty;
     string login = string.Empty;
-    string name = string.Empty;
-    string phone = string.Empty;
     string photo = string.Empty;
 
     public Command TakePhotoCommand { get; }
-    public Command SendRegisterCommand { get; }
+    public Command SendLoginCommand { get; }
     public Command MainPageCommand { get; }
 
     public LoginViewModel()
     {
       MainPageCommand = new Command(Commands.MainPageExecute);
-      SendRegisterCommand = new Command(SendRegisterExecute, SendRegisterCanExecute);
+      SendLoginCommand = new Command(SendLoginExecute, SendLoginCanExecute);
       this.PropertyChanged += RegisterViewModel_PropertyChanged;
     }
 
     private void RegisterViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
     {
-      SendRegisterCommand.ChangeCanExecute();
+      SendLoginCommand.ChangeCanExecute();
     }
 
-    private bool SendRegisterCanExecute()
+    private bool SendLoginCanExecute()
     {
       return !string.IsNullOrWhiteSpace(photo)
-        && !string.IsNullOrWhiteSpace(login) && login.Trim().Length>=2
-        && !string.IsNullOrWhiteSpace(name) && name.Trim().Length>2        ;
+        && !string.IsNullOrWhiteSpace(login) && login.Trim().Length>=2;
     }
 
-    private void SendRegisterExecute()
+    private void SendLoginExecute()
     {
       try
       {
@@ -61,25 +58,10 @@ namespace devcon_client.ViewModels
       set { login = value; OnPropertyChanged(); }
     }
 
-
-    public string Name
-    {
-      get { return name; }
-      set { name = value; OnPropertyChanged(); }
-    }
-
-    public string Phone
-    {
-      get { return phone; }
-      set { phone = value; OnPropertyChanged(); }
-    }
-
     public string Photo
     {
       get { return photo; }
       set { photo = value; OnPropertyChanged(); }
     }
-
-     
   }
 }
