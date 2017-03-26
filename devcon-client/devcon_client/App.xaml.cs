@@ -1,8 +1,4 @@
 ﻿using System.Collections.Generic;
-
-using devcon_client.Helpers;
-using devcon_client.Services;
-using devcon_client.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -19,38 +15,12 @@ namespace devcon_client
     public App()
     {
       InitializeComponent();
-
-      if (AzureNeedsSetup)
-        DependencyService.Register<MockDataStore>();
-      else
-        DependencyService.Register<AzureDataStore>();
-
       SetMainPage();
     }
 
     public static void SetMainPage()
     {
       Commands.MainPageExecute();
-    }
-
-    public static void GoToMainPage()
-    {
-      Current.MainPage = new TabbedPage
-      {
-        Children =
-        {
-          new NavigationPage(new ItemsPage())
-          {
-            Title = "Browse",
-            Icon = Device.OnPlatform("tab_feed.png",null,null)
-          },
-          new NavigationPage(new AboutPage())
-          {
-            Title = "About",
-            Icon = Device.OnPlatform("tab_about.png",null,null)
-          },
-        }
-      };
     }
   }
 }

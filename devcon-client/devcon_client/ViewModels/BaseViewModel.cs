@@ -1,6 +1,5 @@
 ﻿using devcon_client.Helpers;
 using devcon_client.Models;
-using devcon_client.Services;
 
 using Xamarin.Forms;
 
@@ -11,7 +10,6 @@ namespace devcon_client.ViewModels
     /// <summary>
     /// Get the azure service instance
     /// </summary>
-    public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
 
     bool isBusy = false;
     public bool IsBusy

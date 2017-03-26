@@ -1,9 +1,4 @@
-﻿using System.Threading.Tasks;
-using System.Windows.Input;
-
-using devcon_client.Models;
-using devcon_client.Helpers;
-using devcon_client.Services;
+﻿using System.Windows.Input;
 
 using Xamarin.Forms;
 

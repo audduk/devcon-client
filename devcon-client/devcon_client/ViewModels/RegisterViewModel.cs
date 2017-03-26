@@ -34,7 +34,7 @@ namespace devcon_client.ViewModels
     {
       return !string.IsNullOrWhiteSpace(photo)
         && !string.IsNullOrWhiteSpace(login) && login.Trim().Length>=2
-        && !string.IsNullOrWhiteSpace(name) && name.Trim().Length>2        ;
+        && !string.IsNullOrWhiteSpace(name) && name.Trim().Length>=2        ;
     }
 
     private void SendRegisterExecute()
