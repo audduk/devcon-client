@@ -8,19 +8,9 @@ namespace devcon_client.ViewModels
   {
     public RegistrationCompleteViewModel()
     {
-      AskRegisterCommand = new Command(Commands.AskRegisterExecute);
-      AskLoginCommand = new Command(Commands.AskLoginExecute);
+      MainPageCommand = new Command(Commands.MainPageExecute);
     }
 
-    string message = string.Empty;
-    public string Message
-    {
-      get { return message; }
-      set { message = value; OnPropertyChanged(); }
-    }
-
-    public ICommand AskRegisterCommand { get; }
-    public ICommand AskLoginCommand { get; }
-
+    public ICommand MainPageCommand { get; }
   }
 }

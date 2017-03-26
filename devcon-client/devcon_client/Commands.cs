@@ -39,5 +39,13 @@ namespace devcon_client
       };
     }
 
+    public static void RegistrationCompleteExecute()
+    {
+      App.Current.MainPage = new NavigationPage(new RegistrationCompletePage())
+      {
+        BarBackgroundColor = (Color)App.Current.Resources["Primary"],
+        BarTextColor = Color.White
+      };
+    }
   }
 }

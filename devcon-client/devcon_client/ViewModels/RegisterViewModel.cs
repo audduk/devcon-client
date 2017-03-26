@@ -39,6 +39,8 @@ namespace devcon_client.ViewModels
 
     private void SendRegisterExecute()
     {
+      Commands.RegistrationCompleteExecute();
+      return;
       try
       {
         throw new NotImplementedException("Нет связи с сервером");
