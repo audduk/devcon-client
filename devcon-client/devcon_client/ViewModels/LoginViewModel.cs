@@ -1,4 +1,5 @@
-﻿using Plugin.Media;
+﻿using devcon_client.Views;
+using Plugin.Media;
 using Plugin.Media.Abstractions;
 using System;
 using System.Windows.Input;
@@ -36,6 +37,18 @@ namespace devcon_client.ViewModels
 
     private void SendLoginExecute()
     {
+      var loginCompleteViewModel = new LoginCompleteViewModel();
+      loginCompleteViewModel.Login = Login;
+      loginCompleteViewModel.Name = "Иванов Иван Иванович";
+      loginCompleteViewModel.Confidence = 12.3;
+      var loginCompletePage = new NavigationPage(new LoginCompletePage())
+      {
+        BarBackgroundColor = (Color)App.Current.Resources["Primary"],
+        BarTextColor = Color.White,
+        BindingContext = loginCompleteViewModel
+      };
+      App.Current.MainPage = loginCompletePage;
+      return;
       try
       {
         throw new NotImplementedException("Нет связи с сервером");
