@@ -1,79 +1,85 @@
-﻿using System.Threading.Tasks;
+﻿using Plugin.Media;
+using Plugin.Media.Abstractions;
+using System;
 using System.Windows.Input;
-
-using devcon_client.Models;
-using devcon_client.Helpers;
-using devcon_client.Services;
-
 using Xamarin.Forms;
 
 namespace devcon_client.ViewModels
 {
   public class LoginViewModel : BaseViewModel
   {
+    string message = string.Empty;
+    string login = string.Empty;
+    string name = string.Empty;
+    string phone = string.Empty;
+    string photo = string.Empty;
+
+    public Command TakePhotoCommand { get; }
+    public Command SendRegisterCommand { get; }
+    public Command MainPageCommand { get; }
+
     public LoginViewModel()
     {
-      SignInCommand = new Command(async () => await SignIn());
-      NotNowCommand = new Command(App.GoToMainPage);
+      MainPageCommand = new Command(Commands.MainPageExecute);
+      SendRegisterCommand = new Command(SendRegisterExecute, SendRegisterCanExecute);
+      this.PropertyChanged += RegisterViewModel_PropertyChanged;
     }
 
-    string message = string.Empty;
+    private void RegisterViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+    {
+      SendRegisterCommand.ChangeCanExecute();
+    }
+
+    private bool SendRegisterCanExecute()
+    {
+      return !string.IsNullOrWhiteSpace(photo)
+        && !string.IsNullOrWhiteSpace(login) && login.Trim().Length>=2
+        && !string.IsNullOrWhiteSpace(name) && name.Trim().Length>2        ;
+    }
+
+    private void SendRegisterExecute()
+    {
+      try
+      {
+        throw new NotImplementedException("Нет связи с сервером");
+      }
+      catch (Exception ex)
+      {
+        Message = ex.Message;        
+      }      
+    }
+
     public string Message
     {
       get { return message; }
       set { message = value; OnPropertyChanged(); }
     }
 
-    public ICommand NotNowCommand { get; }
-    public ICommand SignInCommand { get; }
-
-    async Task SignIn()
+    public string Login
     {
-      try
-      {
-        IsBusy = true;
-        Message = "Signing In...";
-
-        // Log the user in
-        await TryLoginAsync();
-      }
-      finally
-      {
-        Message = string.Empty;
-        IsBusy = false;
-
-        if (Settings.IsLoggedIn)
-          App.GoToMainPage();
-      }
+      get { return login; }
+      set { login = value; OnPropertyChanged(); }
     }
 
-    public static async Task<bool> TryLoginAsync()
+
+    public string Name
     {
-      var authentication = DependencyService.Get<IAuthenticator>();
-      authentication.ClearCookies();
-
-      var dataStore = DependencyService.Get<IDataStore<Item>>() as AzureDataStore;
-      await dataStore.InitializeAsync();
-
-      if (dataStore.UseAuthentication)
-      {
-        var user = await authentication.LoginAsync(dataStore.MobileService, dataStore.AuthProvider, App.LoginParameters);
-        if (user == null)
-        {
-          MessagingCenter.Send(new MessagingCenterAlert
-          {
-            Title = "Sign In Error",
-            Message = "Unable to sign in, please check your credentials and try again.",
-            Cancel = "OK"
-          }, "message");
-          return false;
-        }
-
-        Settings.AuthToken = user?.MobileServiceAuthenticationToken ?? string.Empty;
-        Settings.UserId = user?.UserId ?? string.Empty;
-      }
-
-      return true;
+      get { return name; }
+      set { name = value; OnPropertyChanged(); }
     }
+
+    public string Phone
+    {
+      get { return phone; }
+      set { phone = value; OnPropertyChanged(); }
+    }
+
+    public string Photo
+    {
+      get { return photo; }
+      set { photo = value; OnPropertyChanged(); }
+    }
+
+     
   }
 }

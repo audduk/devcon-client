@@ -22,14 +22,18 @@ namespace devcon_client.Views
 
         var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
         {
-          Directory = "Sample",
+          Directory = "Sample",          
           Name = "test.jpg"
         });
 
         if (file == null)
           return;
+        var stream = file.GetStream();
+        
+        await DisplayAlert("File Size", $"{stream.Length}", "OK");
+        stream.Dispose();
 
-        // await DisplayAlert("File Location", file.Path, "OK");
+        await DisplayAlert("File Location", file.Path, "OK");
         /*
                 var imageSource = ImageSource.FromStream(() => {
                   var stream = file.GetStream();
